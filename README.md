@@ -1,4 +1,4 @@
-#Truly Automated Ships
+# Truly Automated Ships
 
 This mod intends to change the way AI officers assigned to automated ships affect the rest of your fleet.
 
@@ -9,7 +9,7 @@ With this mod. when you slap a supercomputer on a hull, it will actually make th
 But beware: all of this added computing power will require constant maintenance. After all, you wouldn't expect a giant AI core with the capacity to manage entire planets to be easy to sustain, would you?
 
 
-##Let's talk numbers
+## Let's talk numbers
 
 This mod will apply a reduction to the "automated ship points" of any ship outfitted with an AI core. The reduction will depend on the type of core:
 - Alpha core: 75%
@@ -21,7 +21,7 @@ Having an AI core as an officer will also cause a hefty increase to it's monthly
 - Beta Core: +200%
 - Gamma Core: +100%
 
-
+---
 Please, message the author of this mod if you have any suggestions.
 Fractal Softworks Forums: TobiaF
 Discord: Toby#2057
