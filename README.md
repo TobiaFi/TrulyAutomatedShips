@@ -22,6 +22,9 @@ Having an AI core as an officer will also cause a hefty increase to it's monthly
 - Gamma Core: +100%
 
 ---
+
 Please, message the author of this mod if you have any suggestions.
+
 Fractal Softworks Forums: TobiaF
+
 Discord: Toby#2057
