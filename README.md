@@ -20,10 +20,10 @@ Having an AI core as an officer will also cause a hefty increase to it's monthly
 - Alpha core: +300%
 - Beta Core: +200%
 - Gamma Core: +100%
+#
 
----
-
-Please, message the author of this mod if you have any suggestions.
+## [Download here](https://github.com/TobiaFi/TrulyAutomatedShips/releases/tag/1.0)
+For any questions or suggestions, please contact the author of this mod.
 
 Fractal Softworks Forums: TobiaF
 
