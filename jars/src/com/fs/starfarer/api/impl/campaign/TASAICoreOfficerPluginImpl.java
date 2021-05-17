@@ -95,7 +95,6 @@ public class TASAICoreOfficerPluginImpl extends AICoreOfficerPluginImpl {
 				person.getStats().setSkillLevel(Skills.IMPACT_MITIGATION, 2);
 				person.getStats().setSkillLevel(Skills.RELIABILITY_ENGINEERING, 2);
 				points = GAMMA_POINTS;
-				break;
 		}
 
 		if (points != 0) {
