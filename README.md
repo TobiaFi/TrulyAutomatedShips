@@ -6,7 +6,7 @@ In the vanilla game, AI officers increase the "automated ship points" of the shi
 If your automated fleet relies on the computing power of the rest of the fleet to coordinate itself - and that's why having too many automated ships leads to a decrease in maximum efficiency for all of them - then grabbing a tonne of GPUs and stitching them together with a ship should actually lift some of the weight from your regular ships, not add even more!
 
 With this mod, when you slap a supercomputer on a hull, it will actually make the ship more autonomous, and decrease its "automated ship points," leaving you with the ability to increase the size of your automated fleet even more!
-But beware: all of this added computing power will require constant maintenance. After all, you wouldn't expect a giant AI core with the capacity to manage entire planets to be easy to sustain, would you?
+But beware: all of this added computing power will require constant maintenance. After all, you wouldn't expect a giant AI core with the capacity to manage entire planets to be easy to sustain, would you? The good news is that small ships will be reasonably cheap, but as hull size increases, so does maintenance costs.
 
 
 ## Let's talk numbers
