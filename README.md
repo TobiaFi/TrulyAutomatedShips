@@ -28,7 +28,7 @@ A multiplier will be applied to this base increase depending on hull size:
 - Capitals: 2x
 
 
-## 1.1 changelog
+## v1.1 changelog
 
 - Changed base maintenance increase from 300/200/100 to 150/100/50
 - Added hull size multiplier
