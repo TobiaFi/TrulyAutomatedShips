@@ -7,9 +7,12 @@ import com.fs.starfarer.api.combat.ShipAPI.HullSize;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.Misc;
 
+import java.util.Arrays;
+
 public class TASAutomated extends BaseHullMod {
 
 	public static float MAX_CR_PENALTY = 1f;
+	public String[] acceptedAiCoreIds = {"omega_core", "alpha_core", "beta_core", "gamma_core"};
 
 	public void applyEffectsBeforeShipCreation(HullSize hullSize, MutableShipStatsAPI stats, String id) {
 		stats.getMinCrewMod().modifyMult(id, 0);
@@ -19,7 +22,7 @@ public class TASAutomated extends BaseHullMod {
 			stats.getMaxCombatReadiness().modifyFlat(id, -MAX_CR_PENALTY, "Automated ship penalty");
 		}
 
-		if (stats.getFleetMember() != null && !stats.getFleetMember().getCaptain().isDefault()) {
+		if (stats.getFleetMember() != null && !stats.getFleetMember().getCaptain().isDefault() && Arrays.asList(acceptedAiCoreIds).contains(stats.getFleetMember().getCaptain().getAICoreId())) {
 			float maintenanceMult = 0f;
 			float hullSizeMult = 1f;
 			String aiCoreId = stats.getFleetMember().getCaptain().getAICoreId();
@@ -72,12 +75,7 @@ public class TASAutomated extends BaseHullMod {
 	public void addPostDescriptionSection(TooltipMakerAPI tooltip, HullSize hullSize, ShipAPI ship, float width, boolean isForModSpec) {
 		if (isInPlayerFleet(ship)) {
 			float opad = 10f;
-			if (ship.getCaptain().isDefault()) {
-				tooltip.addPara("Automated ships require specialized equipment and expertise to maintain. In a " +
-					"fleet lacking these, they're virtually useless, with their maximum combat " +
-					"readiness being reduced by %s.", opad, Misc.getHighlightColor(),
-					"" + (int)Math.round(MAX_CR_PENALTY * 100f) + "%");
-			} else {
+			if (Arrays.asList(acceptedAiCoreIds).contains(ship.getCaptain().getAICoreId())) {
 				float maintenanceMult = 0f;
 				float hullSizeMult = 1f;
 				String hullSizeString = "freighter";
@@ -120,6 +118,11 @@ public class TASAutomated extends BaseHullMod {
 					"Monthly supply cost is increased by a total of %s.", opad, Misc.getHighlightColor(),
 					"" + (int)Math.round(MAX_CR_PENALTY * 100f) + "%", ship.getCaptain().getName().getFullName(), "" + (int)Math.round(maintenanceMult * 100f) + "%",
 					"" + hullSizeMult, hullSizeString, "" + (int)Math.round(maintenanceMult * 100f * hullSizeMult) + "%");
+			} else {
+				tooltip.addPara("Automated ships require specialized equipment and expertise to maintain. In a " +
+								"fleet lacking these, they're virtually useless, with their maximum combat " +
+								"readiness being reduced by %s.", opad, Misc.getHighlightColor(),
+						"" + (int)Math.round(MAX_CR_PENALTY * 100f) + "%");
 			}
 		}
 	}
