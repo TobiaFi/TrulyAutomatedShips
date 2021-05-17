@@ -16,15 +16,28 @@ This mod will apply a reduction to the "automated ship points" of any ship outfi
 - Beta core: 50%
 - Gamma core: 25%
 
-Having an AI core as an officer will also cause a hefty increase to it's monthly supply cost:
-- Alpha core: +300%
-- Beta Core: +200%
-- Gamma Core: +100%
-#
+Having an AI core as an officer will also cause a hefty increase to its monthly supply cost:
+- Alpha core base increase: +150%
+- Beta Core base increase: +100%
+- Gamma Core base increase: +50%
 
-## [Download here](https://github.com/TobiaFi/TrulyAutomatedShips/releases/tag/1.0)
+A multiplier will be applied to this base increase depending on hull size:
+- Freighters: 1x
+- Destroyers: 1.25x
+- Cruisers: 1.5x
+- Capitals: 2x
+
+
+## 1.1 changelog
+
+- Changed base maintenance increase from 300/200/100 to 150/100/50
+- Added hull size multiplier
+- Added tooltip on the "Automated Ship" hullmod to explain the increase in cost
+- Changed "Automated Ships" skill description accordingly
+
+## [Download here](https://github.com/TobiaFi/TrulyAutomatedShips/)
 For any questions or suggestions, please contact the author of this mod.
 
-Fractal Softworks Forums: TobiaF
+Fractal Softworks Forums: [TobiaF](https://fractalsoftworks.com/forum/index.php?action=profile;u=15979)
 
 Discord: Toby#2057
