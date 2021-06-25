@@ -1,2 +1,2 @@
 name,id,tier,rarity,tech/manufacturer,tags,uiTags,base value,unlocked,hidden,hiddenEverywhere,cost_frigate,cost_dest,cost_cruiser,cost_capital,script,desc,short,sprite
-Automated Ship,automated,,,,,,,,TRUE,,0,0,0,0,data.hullmods.TASAutomated,"This ship is fully automated, and does not require - and can not take on - any human crew.",Does not require and can not support crew.,graphics/hullmods/automated.png
+Automated Ship,automated,,,,,,,,TRUE,,0,0,0,0,data.hullmods.TAS_Automated,"This ship is fully automated, and does not require - and can not take on - any human crew.",Does not require and can not support crew.,graphics/hullmods/automated.png

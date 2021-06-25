@@ -8,15 +8,15 @@
 		{
 			"requiredSkillLevel":0,
 			"effects":[
-				{"type":"DESCRIPTION", "script":"com.fs.starfarer.api.impl.campaign.skills.TASAutomatedShips$Level0"},
+				{"type":"DESCRIPTION", "script":"com.fs.starfarer.api.impl.campaign.skills.TAS_AutomatedShips$Level0"},
 			]
 		},
 		{
 			"requiredSkillLevel":1,
 			"effectBasedOnLevel":false,
 			"effects":[
-				{"type":"CHARACTER_STATS", "script":"com.fs.starfarer.api.impl.campaign.skills.TASAutomatedShips$Level2"},
-				{"type":"ALL_SHIPS_IN_FLEET", "script":"com.fs.starfarer.api.impl.campaign.skills.TASAutomatedShips$Level1"},
+				{"type":"CHARACTER_STATS", "script":"com.fs.starfarer.api.impl.campaign.skills.TAS_AutomatedShips$Level2"},
+				{"type":"ALL_SHIPS_IN_FLEET", "script":"com.fs.starfarer.api.impl.campaign.skills.TAS_AutomatedShips$Level1"},
 			]
 		},
 	],

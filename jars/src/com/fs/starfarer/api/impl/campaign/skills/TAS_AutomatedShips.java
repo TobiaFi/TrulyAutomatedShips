@@ -7,20 +7,20 @@ import com.fs.starfarer.api.campaign.FleetDataAPI;
 import com.fs.starfarer.api.characters.*;
 import com.fs.starfarer.api.combat.MutableShipStatsAPI;
 import com.fs.starfarer.api.combat.ShipAPI;
-import com.fs.starfarer.api.impl.campaign.TASAICoreOfficerPluginImpl;
+import com.fs.starfarer.api.impl.campaign.TAS_AICoreOfficerPluginImpl;
 import com.fs.starfarer.api.impl.campaign.ids.Skills;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.Misc;
 
-public class TASAutomatedShips extends AutomatedShips {
+public class TAS_AutomatedShips extends AutomatedShips {
 
 	public static class Level0 implements DescriptionSkillEffect {
 
 		@Override
 		public String getString() {
-			float alpha = TASAICoreOfficerPluginImpl.ALPHA_POINTS;
-			float beta = TASAICoreOfficerPluginImpl.BETA_POINTS;
-			float gamma = TASAICoreOfficerPluginImpl.GAMMA_POINTS;
+			float alpha = TAS_AICoreOfficerPluginImpl.ALPHA_POINTS;
+			float beta = TAS_AICoreOfficerPluginImpl.BETA_POINTS;
+			float gamma = TAS_AICoreOfficerPluginImpl.GAMMA_POINTS;
 			if (BaseSkillEffectDescription.USE_RECOVERY_COST) {
 				return "*The total \"automated ship points\" are equal to the recovery cost of " +
 						"all automated ships in the fleet. Installing an AI core on a ship will reduce its point total by " +
@@ -49,14 +49,14 @@ public class TASAutomatedShips extends AutomatedShips {
 		@Override
 		public String[] getHighlights() {
 			if (BaseSkillEffectDescription.USE_RECOVERY_COST) {
-				int alpha = (int) (TASAICoreOfficerPluginImpl.ALPHA_POINTS * 100);
-				int beta = (int) (TASAICoreOfficerPluginImpl.BETA_POINTS * 100);
-				int gamma = (int) (TASAICoreOfficerPluginImpl.GAMMA_POINTS * 100);
+				int alpha = (int) (TAS_AICoreOfficerPluginImpl.ALPHA_POINTS * 100);
+				int beta = (int) (TAS_AICoreOfficerPluginImpl.BETA_POINTS * 100);
+				int gamma = (int) (TAS_AICoreOfficerPluginImpl.GAMMA_POINTS * 100);
 				return new String [] {"" + alpha + "%", "" + beta + "%", "" + gamma + "%"};
 			} else {
-				int alpha = (int) TASAICoreOfficerPluginImpl.ALPHA_POINTS;
-				int beta = (int) TASAICoreOfficerPluginImpl.BETA_POINTS;
-				int gamma = (int) TASAICoreOfficerPluginImpl.GAMMA_POINTS;
+				int alpha = (int) TAS_AICoreOfficerPluginImpl.ALPHA_POINTS;
+				int beta = (int) TAS_AICoreOfficerPluginImpl.BETA_POINTS;
+				int gamma = (int) TAS_AICoreOfficerPluginImpl.GAMMA_POINTS;
 				return new String [] {"" + alpha, "" + beta, "" + gamma};
 			}
 
@@ -66,7 +66,7 @@ public class TASAutomatedShips extends AutomatedShips {
 		}
 	}
 
-	public static class Level1 extends TASBaseSkillEffectDescription implements ShipSkillEffect, FleetTotalSource {
+	public static class Level1 extends TAS_BaseSkillEffectDescription implements ShipSkillEffect, FleetTotalSource {
 
 		public FleetTotalItem getFleetTotalItem() {
 			return getAutomatedPointsTotal();

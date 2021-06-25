@@ -28,6 +28,12 @@ A multiplier will be applied to this base increase depending on hull size:
 - Capitals: 2x
 
 
+## v1.1.2 changelog
+- Fixed issue that caused cores to change the automated points of multiple ships at once
+
+## v1.1.1 changelog
+- Fixed compatibility issue with Seeker
+
 ## v1.1 changelog
 
 - Changed base maintenance increase from 300/200/100 to 150/100/50

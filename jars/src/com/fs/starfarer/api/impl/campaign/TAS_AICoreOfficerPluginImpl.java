@@ -15,7 +15,7 @@ import com.fs.starfarer.api.impl.campaign.skills.BaseSkillEffectDescription;
 /**
  * 
  */
-public class TASAICoreOfficerPluginImpl extends AICoreOfficerPluginImpl {
+public class TAS_AICoreOfficerPluginImpl extends AICoreOfficerPluginImpl {
 	
 	/**
 	 * Extra points added to deployment recovery cost for computing the effect of the "Automated Ships" skill.

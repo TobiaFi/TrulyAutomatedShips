@@ -9,7 +9,7 @@ import com.fs.starfarer.api.util.Misc;
 
 import java.util.Arrays;
 
-public class TASAutomated extends BaseHullMod {
+public class TAS_Automated extends BaseHullMod {
 
 	public static float MAX_CR_PENALTY = 1f;
 	public String[] acceptedAiCoreIds = {"omega_core", "alpha_core", "beta_core", "gamma_core"};
