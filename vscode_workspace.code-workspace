@@ -1,0 +1,20 @@
+{
+    "folders": [
+        {
+            "name": "TrulyAutomatedShips",
+            "path": "."
+        }
+    ],
+    "settings": {
+        "java.project.referencedLibraries": {
+            "include": [
+                "lib/**/*.jar",
+                "../../starsector-core/starfarer.api.jar",
+                "../../starsector-core/json.jar",
+                "../../starsector-core/xstream-1.4.10.jar"
+            ]
+        },
+        "java.project.outputPath": "out/",
+        "java.project.exportJar.targetPath": "${workspaceFolder}/jars/TrulyAutomatedShips.jar"
+    }
+}
