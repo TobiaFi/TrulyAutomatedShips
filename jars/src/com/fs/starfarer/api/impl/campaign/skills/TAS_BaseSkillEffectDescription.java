@@ -14,46 +14,46 @@ import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.Misc;
 
 public class TAS_BaseSkillEffectDescription extends BaseSkillEffectDescription {
-
 	@Override
 	public void addAutomatedThresholdInfo(TooltipMakerAPI info, FleetDataAPI data, MutableCharacterStatsAPI cStats) {
 		if (USE_RECOVERY_COST) {
 			if (isInCampaign()) {
 				float op = TAS_GetAutomatedPoints(data, cStats);
 				info.addPara(indent + "Maximum at %s or less total automated ship points*, your fleet's total is %s ",
-						0f, tc, hc,
-						"" + (int) AUTOMATED_POINTS_THRESHOLD,
-						"" + (int)Math.round(op));
+						0f, tc, hc, "" + (int) AUTOMATED_POINTS_THRESHOLD, "" + Math.round(op));
 			} else {
-				info.addPara(indent + "Maximum at %s or less total automated ship points* for fleet",
-						0f, tc, hc,
+				info.addPara(indent + "Maximum at %s or less total automated ship points* for fleet", 0f, tc, hc,
 						"" + (int) AUTOMATED_POINTS_THRESHOLD);
 			}
+
 			return;
 		}
 		if (isInCampaign()) {
 			float op = TAS_GetAutomatedPoints(data, cStats);
 			String opStr = "points";
-			if (op == 1) opStr = "point";
-			info.addPara(indent + "Maximum at %s or less total automated ship points* in fleet, your fleet has %s " + opStr,
-					0f, tc, hc,
-					"" + (int) AUTOMATED_POINTS_THRESHOLD,
-					"" + (int)Math.round(op));
+			if (op == 1) {
+				opStr = "point";
+			}
+			info.addPara(
+					indent + "Maximum at %s or less total automated ship points* in fleet, your fleet has %s " + opStr,
+					0f, tc, hc, "" + (int) AUTOMATED_POINTS_THRESHOLD, "" + Math.round(op));
 		} else {
-			info.addPara(indent + "Maximum at %s or less total automated ship points* in fleet",
-					0f, tc, hc,
+			info.addPara(indent + "Maximum at %s or less total automated ship points* in fleet", 0f, tc, hc,
 					"" + (int) AUTOMATED_POINTS_THRESHOLD);
 		}
 	}
 
 	@Override
-	protected float computeAndCacheThresholdBonus(FleetDataAPI data, MutableCharacterStatsAPI cStats,
-			String key, float maxBonus, ThresholdBonusType type) {
-		if (data == null) return maxBonus;
-		if (cStats.getFleet() == null) return maxBonus;
+	protected float computeAndCacheThresholdBonus(FleetDataAPI data, MutableCharacterStatsAPI cStats, String key,
+			float maxBonus, ThresholdBonusType type) {
+		if (data == null)
+			return maxBonus;
+		if (cStats.getFleet() == null)
+			return maxBonus;
 
 		Float bonus = (Float) data.getCacheClearedOnSync().get(key);
-		if (bonus != null) return bonus;
+		if (bonus != null)
+			return bonus;
 
 		float currValue = 0f;
 		float threshold = 1f;
@@ -84,6 +84,7 @@ public class TAS_BaseSkillEffectDescription extends BaseSkillEffectDescription {
 		bonus = getThresholdBasedRoundedBonus(maxBonus, currValue, threshold);
 
 		data.getCacheClearedOnSync().put(key, bonus);
+
 		return bonus;
 	}
 
@@ -95,18 +96,21 @@ public class TAS_BaseSkillEffectDescription extends BaseSkillEffectDescription {
 		item.label = "Automated ships";
 		item.value = "" + (int) TAS_BaseSkillEffectDescription.TAS_GetAutomatedPoints(fleet.getFleetData(), stats);
 		item.sortOrder = 350;
-		
+
 		item.tooltipCreator = getTooltipCreator(new TooltipCreatorSkillEffectPlugin() {
+			@Override
 			public void addDescription(TooltipMakerAPI tooltip, boolean expanded, Object tooltipParam) {
 				float opad = 10f;
 				tooltip.addPara("The total deployment points of all the automated ships in your fleet, "
 						+ "with additional points for ships controlled by AI cores.", 0f);
 			}
+
+			@Override
 			public List<FleetMemberPointContrib> getContributors() {
 				return TAS_GetAutomatedPointsDetail(fleet.getFleetData(), stats);
 			}
 		});
-		
+
 		return item;
 	}
 
@@ -114,29 +118,41 @@ public class TAS_BaseSkillEffectDescription extends BaseSkillEffectDescription {
 		float points = 0f;
 		for (FleetMemberAPI curr : data.getMembersListCopy()) {
 			float pts = getPoints(curr, stats);
-			if (curr.isMothballed()) continue;
-			if (!Misc.isAutomated(curr)) continue;
+			if (curr.isMothballed()) {
+				continue;
+			}
+			if (!Misc.isAutomated(curr)) {
+				continue;
+			}
 			if (curr.getCaptain().isAICore()) {
-				pts *= 1 - curr.getCaptain().getMemoryWithoutUpdate().getFloat(AICoreOfficerPlugin.AUTOMATED_POINTS_VALUE);
+				pts *= 1 - curr.getCaptain().getMemoryWithoutUpdate()
+						.getFloat(AICoreOfficerPlugin.AUTOMATED_POINTS_VALUE);
 			}
 			points += pts;
 		}
+
 		return Math.round(points);
 	}
-	
-	public static List<FleetMemberPointContrib> TAS_GetAutomatedPointsDetail(FleetDataAPI data, MutableCharacterStatsAPI stats) {
-		List<FleetMemberPointContrib> result = new ArrayList<BaseSkillEffectDescription.FleetMemberPointContrib>();
+
+	public static List<FleetMemberPointContrib> TAS_GetAutomatedPointsDetail(FleetDataAPI data,
+			MutableCharacterStatsAPI stats) {
+		List<FleetMemberPointContrib> result = new ArrayList<>();
 		for (FleetMemberAPI curr : data.getMembersListCopy()) {
-			if (curr.isMothballed()) continue;
-			if (!Misc.isAutomated(curr)) continue;
-			
+			if (curr.isMothballed()) {
+				continue;
+			}
+			if (!Misc.isAutomated(curr)) {
+				continue;
+			}
+
 			float pts = getPoints(curr, stats);
 			if (curr.getCaptain().isAICore()) {
-				pts *= 1 - curr.getCaptain().getMemoryWithoutUpdate().getFloat(AICoreOfficerPlugin.AUTOMATED_POINTS_VALUE);
+				pts *= 1 - curr.getCaptain().getMemoryWithoutUpdate()
+						.getFloat(AICoreOfficerPlugin.AUTOMATED_POINTS_VALUE);
 			}
 			result.add(new FleetMemberPointContrib(curr, Math.round(pts)));
 		}
+
 		return result;
 	}
-
 }
