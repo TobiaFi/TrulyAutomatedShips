@@ -2,6 +2,9 @@ package data.hullmods;
 
 import java.util.Arrays;
 
+import org.json.JSONException;
+
+import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.combat.BaseHullMod;
 import com.fs.starfarer.api.combat.MutableShipStatsAPI;
 import com.fs.starfarer.api.combat.ShipAPI;
@@ -24,33 +27,24 @@ public class TAS_Automated extends BaseHullMod {
 
 		if (stats.getFleetMember() != null && !stats.getFleetMember().getCaptain().isDefault()
 				&& Arrays.asList(acceptedAiCoreIds).contains(stats.getFleetMember().getCaptain().getAICoreId())) {
-			float maintenanceMult = 0f;
 			float hullSizeMult = 1f;
+			float maintenanceMult = 0f;
 			String aiCoreId = stats.getFleetMember().getCaptain().getAICoreId();
 
-			switch (hullSize) {
-			case DESTROYER:
-				hullSizeMult = 1.25f;
-				break;
-			case CRUISER:
-				hullSizeMult = 1.5f;
-				break;
-			case CAPITAL_SHIP:
-				hullSizeMult = 2f;
+			try {
+				hullSizeMult = (float) Global.getSettings().getJSONObject("TAS_hullSizeMultipliers")
+						.getDouble("default");
+				hullSizeMult = (float) Global.getSettings().getJSONObject("TAS_hullSizeMultipliers")
+						.getDouble(hullSize.name().toLowerCase());
+			} catch (JSONException e) {
 			}
 
-			switch (aiCoreId) {
-			case "omega_core":
-				maintenanceMult = 2f;
-				break;
-			case "alpha_core":
-				maintenanceMult = 1.5f;
-				break;
-			case "beta_core":
-				maintenanceMult = 1f;
-				break;
-			case "gamma_core":
-				maintenanceMult = 0.5f;
+			try {
+				maintenanceMult = (float) Global.getSettings().getJSONObject("TAS_maintenaceMultipliers")
+						.getDouble("default");
+				maintenanceMult = (float) Global.getSettings().getJSONObject("TAS_maintenaceMultipliers")
+						.getDouble(aiCoreId);
+			} catch (JSONException e) {
 			}
 
 			maintenanceMult *= hullSizeMult;
@@ -75,41 +69,49 @@ public class TAS_Automated extends BaseHullMod {
 		if (isInPlayerFleet(ship)) {
 			float opad = 10f;
 			if (Arrays.asList(acceptedAiCoreIds).contains(ship.getCaptain().getAICoreId())) {
-				float maintenanceMult = 0f;
 				float hullSizeMult = 1f;
+				float maintenanceMult = 0f;
 				String hullSizeString = "freighter";
 				String aiCoreArticle = "a";
 				String aiCoreId = ship.getCaptain().getAICoreId();
 
-				switch (hullSize) {
-				case DESTROYER:
-					hullSizeMult = 1.25f;
-					hullSizeString = "destroyer";
-					break;
-				case CRUISER:
-					hullSizeMult = 1.5f;
-					hullSizeString = "cruiser";
-					break;
-				case CAPITAL_SHIP:
-					hullSizeMult = 2f;
-					hullSizeString = "capital";
+				try {
+					hullSizeMult = (float) Global.getSettings().getJSONObject("TAS_hullSizeMultipliers")
+							.getDouble("default");
+					hullSizeMult = (float) Global.getSettings().getJSONObject("TAS_hullSizeMultipliers")
+							.getDouble(hullSize.name().toLowerCase());
+				} catch (JSONException e) {
 				}
 
-				switch (aiCoreId) {
-				case "omega_core":
-					maintenanceMult = 2f;
-					aiCoreArticle = "an";
-					break;
-				case "alpha_core":
-					maintenanceMult = 1.5f;
-					aiCoreArticle = "an";
-					break;
-				case "beta_core":
-					maintenanceMult = 1f;
-					break;
-				case "gamma_core":
-					maintenanceMult = 0.5f;
+				try {
+					maintenanceMult = (float) Global.getSettings().getJSONObject("TAS_maintenaceMultipliers")
+							.getDouble("default");
+					maintenanceMult = (float) Global.getSettings().getJSONObject("TAS_maintenaceMultipliers")
+							.getDouble(aiCoreId);
+				} catch (JSONException e) {
 				}
+
+				try {
+					aiCoreArticle = Global.getSettings().getJSONObject("TAS_AIcoreArticles").getString("default");
+					aiCoreArticle = Global.getSettings().getJSONObject("TAS_AIcoreArticles").getString(aiCoreId);
+				} catch (JSONException e) {
+				}
+
+				switch (hullSize) {
+					case DESTROYER:
+						hullSizeString = "destroyer";
+						break;
+					case CRUISER:
+						hullSizeString = "cruiser";
+						break;
+					case CAPITAL_SHIP:
+						hullSizeString = "capital";
+						break;
+					default:
+						hullSizeString = hullSize.name().toLowerCase();
+						break;
+				}
+
 				tooltip.addPara("Automated ships require specialized equipment and expertise to maintain. In a "
 						+ "fleet lacking these, they're virtually useless, with their maximum combat "
 						+ "readiness being reduced by %s.\n\nDue to this ship being outfitted with " + aiCoreArticle
