@@ -51,53 +51,53 @@ public class TAS_AICoreOfficerPluginImpl extends AICoreOfficerPluginImpl {
 		person.setName(new FullName(spec.getName(), "", Gender.ANY));
 		float points = 0f;
 		switch (aiCoreId) {
-		case "omega_core": // assume it's not going to be integrated, no reason to do it - same as assuming
-							// it's always integrated
-			person.setPortraitSprite("graphics/portraits/characters/omega.png");
-			person.getStats().setLevel(9);
-			person.getStats().setSkillLevel(Skills.HELMSMANSHIP, 2);
-			person.getStats().setSkillLevel(Skills.TARGET_ANALYSIS, 2);
-			person.getStats().setSkillLevel(Skills.IMPACT_MITIGATION, 2);
-			person.getStats().setSkillLevel(Skills.SHIELD_MODULATION, 2);
-			// person.getStats().setSkillLevel(Skills.SYSTEMS_EXPERTISE, 2);
-			person.getStats().setSkillLevel(Skills.GUNNERY_IMPLANTS, 2);
-			person.getStats().setSkillLevel(Skills.RELIABILITY_ENGINEERING, 2);
-			person.getStats().setSkillLevel(Skills.DAMAGE_CONTROL, 2);
-			person.getStats().setSkillLevel(Skills.POINT_DEFENSE, 2);
-			person.getStats().setSkillLevel(Skills.ENERGY_WEAPON_MASTERY, 2);
-			person.getStats().setSkillLevel(Skills.OMEGA_ECM, 2);
-			points = OMEGA_POINTS;
-			break;
-		case "alpha_core":
-			person.setPortraitSprite("graphics/portraits/portrait_ai2b.png");
-			person.getStats().setLevel(7);
-			person.getStats().setSkillLevel(Skills.HELMSMANSHIP, 2);
-			person.getStats().setSkillLevel(Skills.TARGET_ANALYSIS, 2);
-			person.getStats().setSkillLevel(Skills.IMPACT_MITIGATION, 2);
-			person.getStats().setSkillLevel(Skills.SHIELD_MODULATION, 2);
-			// person.getStats().setSkillLevel(Skills.SYSTEMS_EXPERTISE, 2);
-			person.getStats().setSkillLevel(Skills.GUNNERY_IMPLANTS, 2);
-			person.getStats().setSkillLevel(Skills.RELIABILITY_ENGINEERING, 2);
-			person.getStats().setSkillLevel(Skills.DAMAGE_CONTROL, 2);
-			points = ALPHA_POINTS;
-			break;
-		case "beta_core":
-			person.setPortraitSprite("graphics/portraits/portrait_ai3b.png");
-			person.getStats().setLevel(5);
-			person.getStats().setSkillLevel(Skills.HELMSMANSHIP, 2);
-			person.getStats().setSkillLevel(Skills.TARGET_ANALYSIS, 2);
-			person.getStats().setSkillLevel(Skills.IMPACT_MITIGATION, 2);
-			person.getStats().setSkillLevel(Skills.GUNNERY_IMPLANTS, 2);
-			person.getStats().setSkillLevel(Skills.RELIABILITY_ENGINEERING, 2);
-			points = BETA_POINTS;
-			break;
-		case "gamma_core":
-			person.setPortraitSprite("graphics/portraits/portrait_ai1b.png");
-			person.getStats().setLevel(3);
-			person.getStats().setSkillLevel(Skills.HELMSMANSHIP, 2);
-			person.getStats().setSkillLevel(Skills.IMPACT_MITIGATION, 2);
-			person.getStats().setSkillLevel(Skills.RELIABILITY_ENGINEERING, 2);
-			points = GAMMA_POINTS;
+			case "omega_core": // assume it's not going to be integrated, no reason to do it - same as assuming
+								// it's always integrated
+				person.setPortraitSprite("graphics/portraits/characters/omega.png");
+				person.getStats().setLevel(9);
+				person.getStats().setSkillLevel(Skills.HELMSMANSHIP, 2);
+				person.getStats().setSkillLevel(Skills.TARGET_ANALYSIS, 2);
+				person.getStats().setSkillLevel(Skills.IMPACT_MITIGATION, 2);
+				person.getStats().setSkillLevel(Skills.SHIELD_MODULATION, 2);
+				// person.getStats().setSkillLevel(Skills.SYSTEMS_EXPERTISE, 2);
+				person.getStats().setSkillLevel(Skills.GUNNERY_IMPLANTS, 2);
+				person.getStats().setSkillLevel(Skills.RELIABILITY_ENGINEERING, 2);
+				person.getStats().setSkillLevel(Skills.DAMAGE_CONTROL, 2);
+				person.getStats().setSkillLevel(Skills.POINT_DEFENSE, 2);
+				person.getStats().setSkillLevel(Skills.ENERGY_WEAPON_MASTERY, 2);
+				person.getStats().setSkillLevel(Skills.OMEGA_ECM, 2);
+				points = OMEGA_POINTS;
+				break;
+			case "alpha_core":
+				person.setPortraitSprite("graphics/portraits/portrait_ai2b.png");
+				person.getStats().setLevel(7);
+				person.getStats().setSkillLevel(Skills.HELMSMANSHIP, 2);
+				person.getStats().setSkillLevel(Skills.TARGET_ANALYSIS, 2);
+				person.getStats().setSkillLevel(Skills.IMPACT_MITIGATION, 2);
+				person.getStats().setSkillLevel(Skills.SHIELD_MODULATION, 2);
+				// person.getStats().setSkillLevel(Skills.SYSTEMS_EXPERTISE, 2);
+				person.getStats().setSkillLevel(Skills.GUNNERY_IMPLANTS, 2);
+				person.getStats().setSkillLevel(Skills.RELIABILITY_ENGINEERING, 2);
+				person.getStats().setSkillLevel(Skills.DAMAGE_CONTROL, 2);
+				points = ALPHA_POINTS;
+				break;
+			case "beta_core":
+				person.setPortraitSprite("graphics/portraits/portrait_ai3b.png");
+				person.getStats().setLevel(5);
+				person.getStats().setSkillLevel(Skills.HELMSMANSHIP, 2);
+				person.getStats().setSkillLevel(Skills.TARGET_ANALYSIS, 2);
+				person.getStats().setSkillLevel(Skills.IMPACT_MITIGATION, 2);
+				person.getStats().setSkillLevel(Skills.GUNNERY_IMPLANTS, 2);
+				person.getStats().setSkillLevel(Skills.RELIABILITY_ENGINEERING, 2);
+				points = BETA_POINTS;
+				break;
+			case "gamma_core":
+				person.setPortraitSprite("graphics/portraits/portrait_ai1b.png");
+				person.getStats().setLevel(3);
+				person.getStats().setSkillLevel(Skills.HELMSMANSHIP, 2);
+				person.getStats().setSkillLevel(Skills.IMPACT_MITIGATION, 2);
+				person.getStats().setSkillLevel(Skills.RELIABILITY_ENGINEERING, 2);
+				points = GAMMA_POINTS;
 		}
 
 		if (points != 0) {
