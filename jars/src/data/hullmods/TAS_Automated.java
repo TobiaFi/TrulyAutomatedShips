@@ -1,6 +1,6 @@
 package data.hullmods;
 
-import java.util.Arrays;
+import java.util.List;
 
 import org.json.JSONException;
 
@@ -13,8 +13,10 @@ import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.Misc;
 
 public class TAS_Automated extends BaseHullMod {
+	public static String[] defaultAcceptedAiCoreIds = {"omega_core", "alpha_core", "beta_core", "gamma_core"};
+
 	public static float MAX_CR_PENALTY = 1f;
-	public String[] acceptedAiCoreIds = {"omega_core", "alpha_core", "beta_core", "gamma_core"};
+	public static List<String> acceptedAiCoreIds;
 
 	@Override
 	public void applyEffectsBeforeShipCreation(HullSize hullSize, MutableShipStatsAPI stats, String id) {
@@ -26,7 +28,7 @@ public class TAS_Automated extends BaseHullMod {
 		}
 
 		if (stats.getFleetMember() != null && !stats.getFleetMember().getCaptain().isDefault()
-				&& Arrays.asList(acceptedAiCoreIds).contains(stats.getFleetMember().getCaptain().getAICoreId())) {
+				&& acceptedAiCoreIds.contains(stats.getFleetMember().getCaptain().getAICoreId())) {
 			float hullSizeMult = 1f;
 			float maintenanceMult = 0f;
 			String aiCoreId = stats.getFleetMember().getCaptain().getAICoreId();
@@ -68,7 +70,7 @@ public class TAS_Automated extends BaseHullMod {
 			boolean isForModSpec) {
 		if (isInPlayerFleet(ship)) {
 			float opad = 10f;
-			if (Arrays.asList(acceptedAiCoreIds).contains(ship.getCaptain().getAICoreId())) {
+			if (acceptedAiCoreIds.contains(ship.getCaptain().getAICoreId())) {
 				float hullSizeMult = 1f;
 				float maintenanceMult = 0f;
 				String hullSizeString = "freighter";
