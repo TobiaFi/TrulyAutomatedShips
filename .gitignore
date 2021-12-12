@@ -19,8 +19,6 @@ gradle.properties
 
 # Local copies of mod structure (dev env)
 /*.jar
-/data
-/graphics
 
 # Other
 out/

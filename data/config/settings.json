@@ -1,0 +1,33 @@
+{
+    "TAS_acceptedAIcores": [
+        "omega_core",
+        "alpha_core",
+        "beta_core",
+        "gamma_core"
+    ],
+    "TAS_AIcoreArticles": {
+        "default": "a", # Fallback for undeclared coreIds (NOTE: MUST be declared at minimal)
+        "omega_core": "an",
+        "alpha_core": "an"
+    },
+    "TAS_hullSizeMultipliers": {
+        "default": 1.0, # Fallback for undeclared hullsize (NOTE: MUST be declared at minimal)
+        "destroyer": 1.25,
+        "cruiser": 1.5,
+        "capital_ship": 2.0
+    },
+    "TAS_maintenaceMultipliers": {
+        "default": 1.0, # Fallback for undeclared coreIds (NOTE: MUST be declared at minimal)
+        "omega_core": 2.0,
+        "alpha_core": 1.5,
+        "beta_core": 1.0,
+        "gamma_core": 0.5
+    },
+    "TAS_AIcoreShipWeightMultipliers": {
+        "default": 0, # Fallback for undeclared coreIds (NOTE: MUST be declared at minimal)
+        "omega_core": 1.0,
+        "alpha_core": 0.75,
+        "beta_core": 0.5,
+        "gamma_core": 0.25
+    }
+}
