@@ -4,7 +4,7 @@ This mod intends to change the way AI officers assigned to automated ships affec
 
 In the vanilla game, AI officers increase the "automated ship points" of the ship they're attached to, and to me it
 doesn't make sense. If your automated fleet relies on the computing power of the rest of the fleet to coordinate itself
-- and that's why having too many automated ships leads to a decrease in maximum efficiency for all of them - then
+\- and that's why having too many automated ships leads to a decrease in maximum efficiency for all of them - then
 grabbing a tonne of GPUs and stitching them together with a ship should actually lift some of the weight from your
 regular ships, not add even more!
 
