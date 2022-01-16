@@ -28,8 +28,7 @@ public class TAS_Automated extends BaseHullMod {
         }
 
         //Retrieves maintenance values for AI core and hull size and applies the total maintenance increase
-        if (stats.getFleetMember() != null && !stats.getFleetMember().getCaptain().isDefault()
-                && acceptedAICoreIds.contains(stats.getFleetMember().getCaptain().getAICoreId())) {
+        if (isInPlayerFleet(stats) && acceptedAICoreIds.contains(stats.getFleetMember().getCaptain().getAICoreId())) {
             float hullSizeMod = 1f;
             float maintenanceMult = 0f;
             String aiCoreId = stats.getFleetMember().getCaptain().getAICoreId();
