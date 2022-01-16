@@ -16,6 +16,8 @@ The good news is that small ships will be reasonably cheap, but as hull size inc
 
 ## Let's talk numbers
 
+I created this mod with the intent of making it more viable to have powerful automated fleets. It's possible, for example, to have up to three Radiants in your fleet without suffering any CR maluses. The drawback is an increase in the amount monthly supplies required to keep your ships operational. You'll really have to think about how much increasing the power of a given ship is worth to you.
+
 This mod will apply a reduction to the "automated ship points" of any ship outfitted with an AI core. The reduction will
 depend on the type of core:
 
