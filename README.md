@@ -37,7 +37,7 @@ To do so, just follow the instructions in README.txt and you'll be able to set u
 
 ## v1.2 changelog
 
-- Updated values and calculations to adapt to the patch 0.95.1a-RC6
+- Updated values and calculations to adapt to patch 0.95.1a-RC6
 - Added a modifier to AP reduction based on hull size (sorry, running 12 Radiants per fleet would've been a bit too much)
 - Added settings file for customisation
 
