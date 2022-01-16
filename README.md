@@ -60,7 +60,7 @@ To do so, just follow the instructions in README.txt and you'll be able to set u
 - Added tooltip on the "Automated Ship" hullmod to explain the increase in cost
 - Changed "Automated Ships" skill description accordingly
 
-## [Download here](https://github.com/TobiaFi/TrulyAutomatedShips/releases/tag/v1.2)
+## [Download here](https://github.com/TobiaFi/TrulyAutomatedShips/releases/tag/v1.2.1)
 
 For any questions or suggestions, please contact the author of this mod.
 
