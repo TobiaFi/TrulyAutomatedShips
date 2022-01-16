@@ -72,3 +72,5 @@ For any questions or suggestions, please contact the author of this mod.
 Fractal Softworks Forums: [TobiaF](https://fractalsoftworks.com/forum/index.php?action=profile;u=15979)
 
 Discord: Toby#2057
+
+Bisou Gai's info can be found on the "contributors" section for the mod on Github (ThibautSF).
