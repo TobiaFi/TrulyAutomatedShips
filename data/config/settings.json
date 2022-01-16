@@ -1,33 +1,37 @@
 {
-    "TAS_acceptedAIcores": [
-        "omega_core",
-        "alpha_core",
-        "beta_core",
-        "gamma_core"
-    ],
-    "TAS_AIcoreArticles": {
-        "default": "a", # Fallback for undeclared coreIds (NOTE: MUST be declared at minimal)
-        "omega_core": "an",
-        "alpha_core": "an"
-    },
-    "TAS_hullSizeMultipliers": {
-        "default": 1.0, # Fallback for undeclared hullsize (NOTE: MUST be declared at minimal)
-        "destroyer": 1.25,
-        "cruiser": 1.5,
-        "capital_ship": 2.0
-    },
-    "TAS_maintenaceMultipliers": {
-        "default": 1.0, # Fallback for undeclared coreIds (NOTE: MUST be declared at minimal)
-        "omega_core": 2.0,
-        "alpha_core": 1.5,
-        "beta_core": 1.0,
-        "gamma_core": 0.5
-    },
-    "TAS_AIcoreShipWeightMultipliers": {
-        "default": 0, # Fallback for undeclared coreIds (NOTE: MUST be declared at minimal)
-        "omega_core": 1.0,
-        "alpha_core": 0.75,
-        "beta_core": 0.5,
-        "gamma_core": 0.25
-    }
+#AI cores accepted by this mod. Adding new cores is not supported
+"TAS_acceptedAICoreIds": [
+"omega_core",
+"alpha_core",
+"beta_core",
+"gamma_core"
+],
+
+#Modifiers based on hull size. Automated Point reduction is divided by the corresponding modifier, maintenance cost
+#increase is multiplied by it
+"TAS_hullSizeModifiers": {
+"default": 1.0, #Fallback for undeclared hullsize (NOTE: MUST be declared at minimal)
+"frigate": 1.0,
+"destroyer": 1.25,
+"cruiser": 1.5,
+"capital_ship": 2.0
+},
+
+#Multipliers based on AI core type. Maintenance cost is increased by base ship cost multiplied by the corresponding value
+"TAS_maintenanceMultipliers": {
+"default": 0, #Fallback for undeclared coreIds (NOTE: MUST be declared at minimal)
+"omega_core": 2.0,
+"alpha_core": 1.0,
+"beta_core": 0.75,
+"gamma_core": 0.5
+},
+
+#AP reduction based on AI core type. Automated ship points are reducedby the corresponding percentage value
+"TAS_AICoreShipWeightReduction": {
+"default": 0, #Fallback for undeclared coreIds (NOTE: MUST be declared at minimal)
+"omega_core": 1,
+"alpha_core": 0.75,
+"beta_core": 0.5,
+"gamma_core": 0.25
+}
 }

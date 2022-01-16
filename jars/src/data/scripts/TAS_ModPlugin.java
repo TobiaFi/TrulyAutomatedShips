@@ -9,66 +9,59 @@ import org.json.JSONException;
 
 import com.fs.starfarer.api.BaseModPlugin;
 import com.fs.starfarer.api.Global;
-import com.fs.starfarer.api.campaign.TAS_CampaignPlugin;
-import com.fs.starfarer.api.impl.campaign.TAS_AICoreOfficerPluginImpl;
-import com.fs.starfarer.api.impl.campaign.skills.BaseSkillEffectDescription;
+import com.fs.starfarer.api.impl.campaign.AICoreOfficerPluginImpl;
 
 import data.hullmods.TAS_Automated;
 
 public class TAS_ModPlugin extends BaseModPlugin {
-	@Override
-	public void onGameLoad(boolean newGame) {
-		Global.getSector().registerPlugin(new TAS_CampaignPlugin());
 
-		TAS_Automated.acceptedAiCoreIds = Arrays.asList(TAS_Automated.defaultAcceptedAiCoreIds);
-		try {
-			JSONArray acceptedCustom = Global.getSettings().getJSONArray("TAS_acceptedAIcores");
+    public void onGameLoad(boolean newGame) {
 
-			List<String> acceptedTemp = new ArrayList<>();
-			for (int i = 0; i < acceptedCustom.length(); i++) {
-				acceptedTemp.add(acceptedCustom.getString(i));
-			}
+        //Sets accepted cores for compatibility with other mods
+        TAS_Automated.acceptedAICoreIds = Arrays.asList(TAS_Automated.defaultAcceptedAICoreIds);
+        try {
+            JSONArray acceptedCustom = Global.getSettings().getJSONArray("TAS_acceptedAICoreIds");
 
-			TAS_Automated.acceptedAiCoreIds = acceptedTemp;
-		} catch (JSONException e) {
-		}
+            List<String> acceptedTemp = new ArrayList<>();
+            for (int i = 0; i < acceptedCustom.length(); i++) {
+                acceptedTemp.add(acceptedCustom.getString(i));
+            }
 
-		if (BaseSkillEffectDescription.USE_RECOVERY_COST) {
-			TAS_AICoreOfficerPluginImpl.OMEGA_POINTS = 1f;
-			try {
-				TAS_AICoreOfficerPluginImpl.OMEGA_POINTS = (float) Global.getSettings()
-						.getJSONObject("TAS_AIcoreShipWeightMultipliers").getDouble("default");
-				TAS_AICoreOfficerPluginImpl.OMEGA_POINTS = (float) Global.getSettings()
-						.getJSONObject("TAS_AIcoreShipWeightMultipliers").getDouble("omega_core");
-			} catch (JSONException e) {
-			}
+            TAS_Automated.acceptedAICoreIds = acceptedTemp;
+        } catch (JSONException ignore) {
+        }
 
-			TAS_AICoreOfficerPluginImpl.ALPHA_POINTS = 0.75f;
-			try {
-				TAS_AICoreOfficerPluginImpl.ALPHA_POINTS = (float) Global.getSettings()
-						.getJSONObject("TAS_AIcoreShipWeightMultipliers").getDouble("default");
-				TAS_AICoreOfficerPluginImpl.ALPHA_POINTS = (float) Global.getSettings()
-						.getJSONObject("TAS_AIcoreShipWeightMultipliers").getDouble("alpha_core");
-			} catch (JSONException e) {
-			}
+        //Sets new values for the multipliers in AICoreOfficerPluginImpl
+        try {
+            AICoreOfficerPluginImpl.OMEGA_MULT = (float) Global.getSettings()
+                    .getJSONObject("TAS_AICoreShipWeightReduction").getDouble("default");
+            AICoreOfficerPluginImpl.OMEGA_MULT = (float) Global.getSettings()
+                    .getJSONObject("TAS_AICoreShipWeightReduction").getDouble("omega_core");
+        } catch (JSONException ignore) {
+        }
 
-			TAS_AICoreOfficerPluginImpl.BETA_POINTS = 0.5f;
-			try {
-				TAS_AICoreOfficerPluginImpl.BETA_POINTS = (float) Global.getSettings()
-						.getJSONObject("TAS_AIcoreShipWeightMultipliers").getDouble("default");
-				TAS_AICoreOfficerPluginImpl.BETA_POINTS = (float) Global.getSettings()
-						.getJSONObject("TAS_AIcoreShipWeightMultipliers").getDouble("beta_core");
-			} catch (JSONException e) {
-			}
+        try {
+            AICoreOfficerPluginImpl.ALPHA_MULT = (float) Global.getSettings()
+                    .getJSONObject("TAS_AICoreShipWeightReduction").getDouble("default");
+            AICoreOfficerPluginImpl.ALPHA_MULT = (float) Global.getSettings()
+                    .getJSONObject("TAS_AICoreShipWeightReduction").getDouble("alpha_core");
+        } catch (JSONException ignore) {
+        }
 
-			TAS_AICoreOfficerPluginImpl.GAMMA_POINTS = 0.25f;
-			try {
-				TAS_AICoreOfficerPluginImpl.GAMMA_POINTS = (float) Global.getSettings()
-						.getJSONObject("TAS_AIcoreShipWeightMultipliers").getDouble("default");
-				TAS_AICoreOfficerPluginImpl.GAMMA_POINTS = (float) Global.getSettings()
-						.getJSONObject("TAS_AIcoreShipWeightMultipliers").getDouble("gamma_core");
-			} catch (JSONException e) {
-			}
-		}
-	}
+        try {
+            AICoreOfficerPluginImpl.BETA_MULT = (float) Global.getSettings()
+                    .getJSONObject("TAS_AICoreShipWeightReduction").getDouble("default");
+            AICoreOfficerPluginImpl.BETA_MULT = (float) Global.getSettings()
+                    .getJSONObject("TAS_AICoreShipWeightReduction").getDouble("beta_core");
+        } catch (JSONException ignore) {
+        }
+
+        try {
+            AICoreOfficerPluginImpl.GAMMA_MULT = (float) Global.getSettings()
+                    .getJSONObject("TAS_AICoreShipWeightReduction").getDouble("default");
+            AICoreOfficerPluginImpl.GAMMA_MULT = (float) Global.getSettings()
+                    .getJSONObject("TAS_AICoreShipWeightReduction").getDouble("gamma_core");
+        } catch (JSONException ignore) {
+        }
+    }
 }
