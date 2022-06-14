@@ -15,7 +15,7 @@ import org.json.JSONException;
 
 public class TAS_BaseSkillEffectDescription extends BaseSkillEffectDescription {
 
-    //Includes the modifier based ohn hull size. mult becomes a percentage reduction, which gets divided by hullSizeMod.
+    //Includes the modifier based on hull size. mult becomes a percentage reduction, which gets divided by hullSizeMod.
     //This scales AP reduction with hull size
     public static float getAutomatedPoints(FleetDataAPI data, MutableCharacterStatsAPI stats) {
         float points = 0;
@@ -29,13 +29,12 @@ public class TAS_BaseSkillEffectDescription extends BaseSkillEffectDescription {
                 hullSizeMod = (float) Global.getSettings().getJSONObject("TAS_hullSizeModifiers").getDouble(hullSize);
             } catch (JSONException ignore) {
             }
-            points += curr.getCaptain().getMemoryWithoutUpdate().getFloat(AICoreOfficerPlugin.AUTOMATED_POINTS_VALUE);
             points += Math.round(getPoints(curr, stats) * (1 - mult / hullSizeMod));
         }
         return Math.round(points);
     }
 
-    //Includes the modifier based ohn hull size. mult becomes a percentage reduction, which gets divided by hullSizeMod.
+    //Includes the modifier based on hull size. mult becomes a percentage reduction, which gets divided by hullSizeMod.
     //This scales AP reduction with hull size
     public static List<FleetMemberPointContrib> getAutomatedPointsDetail(FleetDataAPI data, MutableCharacterStatsAPI stats) {
         List<FleetMemberPointContrib> result = new ArrayList<>();
@@ -49,9 +48,7 @@ public class TAS_BaseSkillEffectDescription extends BaseSkillEffectDescription {
                 hullSizeMod = (float) Global.getSettings().getJSONObject("TAS_hullSizeModifiers").getDouble(hullSize);
             } catch (JSONException ignore) {
             }
-            int pts = Math.round(getPoints(curr, stats));
-            pts += Math.round(curr.getCaptain().getMemoryWithoutUpdate().getFloat(AICoreOfficerPlugin.AUTOMATED_POINTS_VALUE));
-            result.add(new FleetMemberPointContrib(curr, Math.round(pts * (1 - mult / hullSizeMod))));
+            result.add(new FleetMemberPointContrib(curr, Math.round(getPoints(curr, stats) * (1 - mult / hullSizeMod))));
         }
         return result;
     }

@@ -1,5 +1,6 @@
 package data.hullmods;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONException;
@@ -17,7 +18,7 @@ public class TAS_Automated extends BaseHullMod {
 
     //These are used to prevent compatibility issues with other mods, preventing new core types from breaking the hullmod
     public static String[] defaultAcceptedAICoreIds = {"omega_core", "alpha_core", "beta_core", "gamma_core"};
-    public static List<String> acceptedAICoreIds;
+    public static List<String> acceptedAICoreIds = new ArrayList<>();
 
     public void applyEffectsBeforeShipCreation(HullSize hullSize, MutableShipStatsAPI stats, String id) {
         stats.getMinCrewMod().modifyMult(id, 0);
