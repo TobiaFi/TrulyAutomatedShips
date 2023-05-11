@@ -35,6 +35,10 @@ A modifier will be applied to these base values depending on hull size. Automate
 Thanks to Bisou Gai's amazing contributions, TAS now has a "settings" file that can be edited to change how the mod operates!
 To do so, just follow the instructions in README.txt and you'll be able to set up your own configuration, change any of the previously stated percentages and modifiers, and even disable them altogether.
 
+## v1.2.3 changelog
+
+- Implemented compatibility with "AUTOMATED_NO_PENALTY" ship tag introduced in patch 0.96a (no functional changes)
+
 ## v1.2.2 changelog
 
 - Fixed NullPointer error when loading the game
