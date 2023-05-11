@@ -59,7 +59,7 @@ public class TAS_BaseSkillEffectDescription extends BaseSkillEffectDescription {
         final MutableCharacterStatsAPI stats = Global.getSector().getPlayerStats();
         FleetTotalItem item = new FleetTotalItem();
         item.label = "Automated ships";
-        item.value = "" + (int) BaseSkillEffectDescription.getAutomatedPoints(fleet.getFleetData(), stats);
+        item.value = "" + (int) getAutomatedPoints(fleet.getFleetData(), stats);
         item.sortOrder = 350;
 
         item.tooltipCreator = getTooltipCreator(new TooltipCreatorSkillEffectPlugin() {
