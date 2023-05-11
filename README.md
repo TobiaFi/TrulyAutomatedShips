@@ -1,4 +1,4 @@
-# Truly Automated Ships v1.2.1
+# Truly Automated Ships v1.2.3
 
 This mod intends to change the way AI officers assigned to automated ships affect the rest of your fleet.
 

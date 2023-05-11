@@ -47,7 +47,7 @@ public class TAS_AutomatedShips extends AutomatedShips {
         }
 
         public void apply(MutableShipStatsAPI stats, ShipAPI.HullSize hullSize, String id, float level) {
-            if (Misc.isAutomated(stats)) {
+            if (Misc.isAutomated(stats) && !Automated.isAutomatedNoPenalty(stats)) {
                 float crBonus = computeAndCacheThresholdBonus(stats, "auto_cr", MAX_CR_BONUS, ThresholdBonusType.AUTOMATED_POINTS);
                 SkillSpecAPI skill = Global.getSettings().getSkillSpec(Skills.AUTOMATED_SHIPS);
                 stats.getMaxCombatReadiness().modifyFlat(id, crBonus * 0.01f, skill.getName() + " skill");

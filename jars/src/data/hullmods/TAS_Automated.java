@@ -3,6 +3,8 @@ package data.hullmods;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fs.starfarer.api.fleet.FleetMemberAPI;
+import com.fs.starfarer.api.impl.campaign.ids.Tags;
 import org.json.JSONException;
 
 import com.fs.starfarer.api.Global;
@@ -24,12 +26,12 @@ public class TAS_Automated extends BaseHullMod {
         stats.getMinCrewMod().modifyMult(id, 0);
         stats.getMaxCrewMod().modifyMult(id, 0);
 
-        if (isInPlayerFleet(stats)) {
+        if (isInPlayerFleet(stats) && !isAutomatedNoPenalty(stats)) {
             stats.getMaxCombatReadiness().modifyFlat(id, -MAX_CR_PENALTY, "Automated ship penalty");
         }
 
         //Retrieves maintenance values for AI core and hull size and applies the total maintenance increase
-        if (isInPlayerFleet(stats) && acceptedAICoreIds.contains(stats.getFleetMember().getCaptain().getAICoreId())) {
+        if (isInPlayerFleet(stats) && acceptedAICoreIds.contains(stats.getFleetMember().getCaptain().getAICoreId()) && !isAutomatedNoPenalty(stats)) {
             float hullSizeMod = 1f;
             float maintenanceMult = 0f;
             String aiCoreId = stats.getFleetMember().getCaptain().getAICoreId();
@@ -56,12 +58,13 @@ public class TAS_Automated extends BaseHullMod {
 
     }
 
+    @Override
     public void applyEffectsAfterShipCreation(ShipAPI ship, String id) {
         ship.setInvalidTransferCommandTarget(true);
     }
 
     public String getDescriptionParam(int index, HullSize hullSize) {
-        if (index == 0) return "" + Math.round(MAX_CR_PENALTY * 100f);
+        if (index == 0) return "" + (int)Math.round(MAX_CR_PENALTY * 100f) + "%";
         return null;
     }
 
@@ -70,7 +73,11 @@ public class TAS_Automated extends BaseHullMod {
                                           boolean isForModSpec) {
         if (isInPlayerFleet(ship)) {
             float opad = 10f;
-            if (acceptedAICoreIds.contains(ship.getCaptain().getAICoreId())) {
+            boolean noPenalty = isAutomatedNoPenalty(ship);
+            String usually = "";
+            if (noPenalty) usually = "usually ";
+
+            if (acceptedAICoreIds.contains(ship.getCaptain().getAICoreId()) && !noPenalty) {
                 float apReduction = 1f;
                 float hullSizeMod = 1f;
                 float maintenanceMult = 0f;
@@ -133,12 +140,38 @@ public class TAS_Automated extends BaseHullMod {
                         "" + Math.round(ship.getMutableStats().getSuppliesToRecover().base * (1 - apReduction / hullSizeMod)),
                         "" + Math.round(ship.getMutableStats().getSuppliesPerMonth().base * (1 + maintenanceMult * hullSizeMod)));
             } else {
-                tooltip.addPara(
-                        "Automated ships require specialized equipment and expertise to maintain. In a "
+                tooltip.addPara("Automated ships " + usually + "require specialized equipment and expertise to maintain. In a "
                                 + "fleet lacking these, they're virtually useless, with their maximum combat "
                                 + "readiness being reduced by %s.",
                         opad, Misc.getHighlightColor(), "" + Math.round(MAX_CR_PENALTY * 100f) + "%");
             }
+            if (noPenalty) {
+                tooltip.addPara("However, this ship was automated in a fashion that does not require special expertise "
+                        + "to maintain. Some of the techniques used are poorly understood, likely dating to "
+                        + "an earlier period.", opad);
+            }
         }
+    }
+
+    public static boolean isAutomatedNoPenalty(MutableShipStatsAPI stats) {
+        if (stats == null) return false;
+        FleetMemberAPI member = stats.getFleetMember();
+        if (member == null) return false;
+        return member.getHullSpec().hasTag(Tags.TAG_AUTOMATED_NO_PENALTY) ||
+                member.getVariant().hasTag(Tags.TAG_AUTOMATED_NO_PENALTY);
+    }
+
+    public static boolean isAutomatedNoPenalty(ShipAPI ship) {
+        if (ship == null) return false;
+        FleetMemberAPI member = ship.getFleetMember();
+        if (member == null) return false;
+        return member.getHullSpec().hasTag(Tags.TAG_AUTOMATED_NO_PENALTY) ||
+                member.getVariant().hasTag(Tags.TAG_AUTOMATED_NO_PENALTY);
+    }
+
+    public static boolean isAutomatedNoPenalty(FleetMemberAPI member) {
+        if (member == null) return false;
+        return member.getHullSpec().hasTag(Tags.TAG_AUTOMATED_NO_PENALTY) ||
+                member.getVariant().hasTag(Tags.TAG_AUTOMATED_NO_PENALTY);
     }
 }
