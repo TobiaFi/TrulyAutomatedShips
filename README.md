@@ -82,12 +82,12 @@ If you already have some cores integrated into ships by the time you install thi
 - Added tooltip on the "Automated Ship" hullmod to explain the increase in cost
 - Changed "Automated Ships" skill description accordingly
 
-## [Download here](https://github.com/TobiaFi/TrulyAutomatedShips/releases/tag/v1.2.1)
+## [Download here](https://github.com/TobiaFi/TrulyAutomatedShips/releases/tag/v1.2.5)
 
 For any questions or suggestions, please contact the author of this mod.
 
 Fractal Softworks Forums: [TobiaF](https://fractalsoftworks.com/forum/index.php?action=profile;u=15979)
 
-Discord: Toby#2057
+Discord: LizardToby
 
 Bisou Gai's info can be found on the "contributors" section for the mod on Github (ThibautSF).
