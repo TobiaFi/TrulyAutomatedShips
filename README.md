@@ -1,4 +1,4 @@
-# Truly Automated Ships v1.2.4
+# Truly Automated Ships v1.2.5
 
 This mod intends to change the way AI officers assigned to automated ships affect the rest of your fleet.
 
@@ -34,6 +34,15 @@ A modifier will be applied to these base values depending on hull size. Automate
 
 Thanks to Bisou Gai's amazing contributions, TAS now has a "settings" file that can be edited to change how the mod operates!
 To do so, just follow the instructions in README.txt and you'll be able to set up your own configuration, change any of the previously stated percentages and modifiers, and even disable them altogether.
+
+## Known issues
+
+When using this mod on a preexisting savefile, you'll need to remove all cores that you already have on your ships and then put them back in. Otherwise, the game won't update their CR according to the mod.
+If you already have some cores integrated into ships by the time you install this mod, that ship's CR calculation will stay bugged. There's nothing I can do at the moment, though I'm working on fixing the issue.
+
+## v1.2.5 changelog
+- Fixed bug with CR calculation
+- Implemented compatibility with Tahlan Shipworks 1.2.1
 
 ## v1.2.4 changelog
 

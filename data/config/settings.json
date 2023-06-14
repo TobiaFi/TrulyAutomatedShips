@@ -4,7 +4,9 @@
 "omega_core",
 "alpha_core",
 "beta_core",
-"gamma_core"
+"gamma_core",
+"tahlan_archdaemoncore",
+"tahlan_daemoncore"
 ],
 
 #Modifiers based on hull size. Automated Point reduction is divided by the corresponding modifier, maintenance cost
@@ -23,7 +25,9 @@
 "omega_core": 2.0,
 "alpha_core": 1.0,
 "beta_core": 0.75,
-"gamma_core": 0.5
+"gamma_core": 0.5,
+"tahlan_archdaemoncore": 1.0,
+"tahlan_daemoncore": 0.75
 },
 
 #AP reduction based on AI core type. Automated ship points are reducedby the corresponding percentage value
@@ -32,6 +36,8 @@
 "omega_core": 1,
 "alpha_core": 0.75,
 "beta_core": 0.5,
-"gamma_core": 0.25
+"gamma_core": 0.25,
+"tahlan_archdaemoncore": 0.75,
+"tahlan_daemoncore": 0.5
 }
 }

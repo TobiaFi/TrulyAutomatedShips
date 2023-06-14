@@ -8,6 +8,7 @@ import com.fs.starfarer.api.campaign.CampaignFleetAPI;
 import com.fs.starfarer.api.campaign.FleetDataAPI;
 import com.fs.starfarer.api.characters.FleetTotalItem;
 import com.fs.starfarer.api.characters.MutableCharacterStatsAPI;
+import com.fs.starfarer.api.combat.MutableShipStatsAPI;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.Misc;
@@ -105,6 +106,63 @@ public class TAS_BaseSkillEffectDescription extends BaseSkillEffectDescription {
                     0f, tc, hc,
                     "" + (int) AUTOMATED_POINTS_THRESHOLD);
         }
+    }
+
+    //Unchanged, but required for proper CR calculation
+    @Override
+    protected float computeAndCacheThresholdBonus(MutableShipStatsAPI stats,
+                                                         String key, float maxBonus, ThresholdBonusType type) {
+        FleetDataAPI data = getFleetData(stats);
+        MutableCharacterStatsAPI cStats = getCommanderStats(stats);
+        return computeAndCacheThresholdBonus(data, cStats, key, maxBonus, type);
+    }
+
+    //Unchanged, but required for proper CR calculation
+    @Override
+    protected float computeAndCacheThresholdBonus(FleetDataAPI data, MutableCharacterStatsAPI cStats,
+                                                  String key, float maxBonus, ThresholdBonusType type) {
+//		if (key.equals("pc_peak")) {
+//			System.out.println("efwfwefwe");
+//		}
+        if (data == null) return maxBonus;
+        if (cStats.getFleet() == null) return maxBonus;
+
+        Float bonus = (Float) data.getCacheClearedOnSync().get(key);
+        if (bonus != null) return bonus;
+
+        float currValue = 0f;
+        float threshold = 1f;
+
+        if (type == ThresholdBonusType.FIGHTER_BAYS) {
+            currValue = getNumFighterBays(data);
+            threshold = FIGHTER_BAYS_THRESHOLD;
+        } else if (type == ThresholdBonusType.OP) {
+            currValue = getTotalCombatOP(data, cStats);
+            threshold = OP_THRESHOLD;
+        } else if (type == ThresholdBonusType.OP_LOW) {
+            currValue = getTotalCombatOP(data, cStats);
+            threshold = OP_LOW_THRESHOLD;
+        } else if (type == ThresholdBonusType.OP_ALL_LOW) {
+            currValue = getTotalOP(data, cStats);
+            threshold = OP_ALL_LOW_THRESHOLD;
+        } else if (type == ThresholdBonusType.OP_ALL) {
+            currValue = getTotalOP(data, cStats);
+            threshold = OP_ALL_THRESHOLD;
+        } else if (type == ThresholdBonusType.MILITARIZED_OP) {
+            currValue = getMilitarizedOP(data, cStats);
+            threshold = MILITARIZED_OP_THRESHOLD;
+        } else if (type == ThresholdBonusType.PHASE_OP) {
+            currValue = getPhaseOP(data, cStats);
+            threshold = PHASE_OP_THRESHOLD;
+        } else if (type == ThresholdBonusType.AUTOMATED_POINTS) {
+            currValue = getAutomatedPoints(data, cStats);
+            threshold = AUTOMATED_POINTS_THRESHOLD;
+        }
+
+        bonus = getThresholdBasedRoundedBonus(maxBonus, currValue, threshold);
+
+        data.getCacheClearedOnSync().put(key, bonus);
+        return bonus;
     }
 
 }
