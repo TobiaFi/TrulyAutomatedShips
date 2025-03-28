@@ -1,12 +1,30 @@
 {
 #AI cores accepted by this mod. Adding new cores is not supported
 "TAS_acceptedAICoreIds": [
+#Vanilla
 "omega_core",
 "alpha_core",
 "beta_core",
 "gamma_core",
+#Tahlan Shipworks 1.3
 "tahlan_archdaemoncore",
-"tahlan_daemoncore"
+"tahlan_daemoncore",
+#Secrets of the Frontier 0.14.2c
+"sotf_ichip_barrow",
+"sotf_ichip_barrow_d",
+"sotf_ichip_seraph",
+"sotf_ceruleancore",
+"sotf_ichip_nightingale",
+"sotf_ichip_echo1",
+"sotf_ichip_sliver1",
+"sotf_ichip_sliver2",
+#Random Assortment of Things 2.5.6
+"rat_exo_processor",
+"rat_neuro_core",
+"rat_core_primordial",
+"rat_core_seraph",
+"rat_core_space",
+"rat_core_time"
 ],
 
 #Modifiers based on hull size. Automated Point reduction is divided by the corresponding modifier, maintenance cost
@@ -22,22 +40,58 @@
 #Multipliers based on AI core type. Maintenance cost is increased by base ship cost multiplied by the corresponding value
 "TAS_maintenanceMultipliers": {
 "default": 0, #Fallback for undeclared coreIds (NOTE: MUST be declared at minimal)
+#Vanilla
 "omega_core": 2.0,
 "alpha_core": 1.0,
 "beta_core": 0.75,
 "gamma_core": 0.5,
+#Tahlan Shipworks 1.3
 "tahlan_archdaemoncore": 1.0,
-"tahlan_daemoncore": 0.75
+"tahlan_daemoncore": 0.75,
+#Secrets of the Frontier 0.14.2c
+"sotf_ichip_barrow": 1.0,
+"sotf_ichip_barrow_d": 1.0,
+"sotf_ichip_seraph": 1.0,
+"sotf_ceruleancore": 0.75,
+"sotf_ichip_nightingale": 0.75,
+"sotf_ichip_echo1": 0.75,
+"sotf_ichip_sliver1": 0.5,
+"sotf_ichip_sliver2": 0.5,
+#Random Assortment of Things 2.5.6
+"rat_exo_processor": 1.0,
+"rat_neuro_core": 1.0,
+"rat_core_primordial": 1.0,
+"rat_core_seraph": 1.0,
+"rat_core_space": 0.75,
+"rat_core_time": 0.75
 },
 
 #AP reduction based on AI core type. Automated ship points are reducedby the corresponding percentage value
 "TAS_AICoreShipWeightReduction": {
 "default": 0, #Fallback for undeclared coreIds (NOTE: MUST be declared at minimal)
+#Vanilla
 "omega_core": 1,
 "alpha_core": 0.75,
 "beta_core": 0.5,
 "gamma_core": 0.25,
+#Tahlan Shipworks 1.3
 "tahlan_archdaemoncore": 0.75,
-"tahlan_daemoncore": 0.5
+"tahlan_daemoncore": 0.5,
+#Secrets of the Frontier 0.14.2c
+"sotf_ichip_barrow": 0.75,
+"sotf_ichip_barrow_d": 0.75,
+"sotf_ichip_seraph": 0.75,
+"sotf_ceruleancore": 0.5,
+"sotf_ichip_nightingale": 0.5,
+"sotf_ichip_echo1": 0.5,
+"sotf_ichip_sliver1": 0.25,
+"sotf_ichip_sliver2": 0.25,
+#Random Assortment of Things 2.5.6
+"rat_exo_processor": 0.75,
+"rat_neuro_core": 0.75,
+"rat_core_primordial": 0.75,
+"rat_core_seraph": 0.75,
+"rat_core_space": 0.5,
+"rat_core_time": 0.5
 }
 }

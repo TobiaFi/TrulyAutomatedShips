@@ -1,10 +1,10 @@
 {
   "id": "TrulyAutomatedShips",
   "name": "Truly Automated Ships",
-  "version": "1.2.5",
+  "version": "1.2.7",
   "description": "Makes automated ships more independent when outfitted with an AI core, at the cost of increased monthly maintenance.",
-  "gameVersion": "0.97a-RC11",
-  "author": "TobiaF",
+  "gameVersion": "0.98a",
+  "author": "LizardToby",
   "replace": [
     "data/characters/skills/automated_ships.skill"
   ],
