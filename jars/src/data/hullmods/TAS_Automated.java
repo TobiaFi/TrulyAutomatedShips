@@ -52,19 +52,27 @@ public class TAS_Automated extends BaseHullMod {
             } catch (JSONException ignore) {
             }
 
-            maintenanceMult *= hullSizeMod;
-            stats.getSuppliesPerMonth().modifyMult(id, 1 + maintenanceMult);
+            //Reduces Peak Performance Time by 20/40/60% capitals, 15/30/45% cruisers, 12.5/25/37.5% destroyers, 10/20/30% frigates
+            stats.getPeakCRDuration().modifyMult(id, 1 - maintenanceMult * hullSizeMod/ 10);
+
+            //Increases CR decay by 15/30/45% after PPT has expired
+            stats.getCRLossPerSecondPercent().modifyMult(id, 1 + maintenanceMult * 1.5f / 10);
+
+            //Increases CR cost per deployment by 20/40/60%
+            stats.getCRPerDeploymentPercent().modifyMult(id, 1 + maintenanceMult * 2 / 10);
         }
 
     }
 
+    //Unchanged
     @Override
     public void applyEffectsAfterShipCreation(ShipAPI ship, String id) {
         ship.setInvalidTransferCommandTarget(true);
     }
 
+    //Unchanged
     public String getDescriptionParam(int index, HullSize hullSize) {
-        if (index == 0) return "" + (int)Math.round(MAX_CR_PENALTY * 100f) + "%";
+        //if (index == 0) return "" + (int)Math.round(MAX_CR_PENALTY * 100f) + "%";
         return null;
     }
 
@@ -74,8 +82,6 @@ public class TAS_Automated extends BaseHullMod {
         if (isInPlayerFleet(ship)) {
             float opad = 10f;
             boolean noPenalty = isAutomatedNoPenalty(ship);
-            String usually = "";
-            if (noPenalty) usually = "usually ";
 
             if (acceptedAICoreIds.contains(ship.getCaptain().getAICoreId()) && !noPenalty) {
                 float apReduction = 1f;
@@ -127,32 +133,38 @@ public class TAS_Automated extends BaseHullMod {
 
                 tooltip.addPara("Automated ships require specialized equipment and expertise to maintain. In a "
                                 + "fleet lacking these, they're virtually useless, with their maximum combat readiness being reduced by %s."
-                                + "\n\nThe %s installed on this ship affects its total automated ship points and monthly maintenance:"
+                                + "\n\nThe %s installed on this ship affects its total automated ship points, peak performance time, "
+                                + "combat readiness degradation rate, and combat readiness consumed per deployment:"
                                 + "\n- Automated ship points are decreased by a base of %s, divided by %s to account for the %s size hull, for a total of %s."
-                                + "\n- Monthly maintenance is increased by a base of %s, multiplied by %s to account for the %s size hull, for a total of %s supplies."
-                                + "\n\nShip's automated points: %s.\nShip's monthly maintenance: %s supplies.",
+                                + "\n- Peak performance time is reduced by a base of %s, multiplied by %s to account for the %s size hull."
+                                + "\n- Combat readiness degradation after peak performance time runs out is increased by %s."
+                                + "\n- Combat readiness consumed per deployment is increased by %s."
+                                + "\n\nShip's automated points: %s.",
                         opad, Misc.getHighlightColor(),
-                        "" + Math.round(MAX_CR_PENALTY * 100f) + "%", ship.getCaptain().getName().getFullName(),
-                        "" + Math.round(apReduction * 100f) + "%", "" + hullSizeMod, hullSizeString,
-                        "" + Math.round(apReduction * 100f / hullSizeMod) + "%",
-                        "" + Math.round(maintenanceMult * 100f) + "%", "" + hullSizeMod, hullSizeString,
-                        "" + Math.round(maintenanceMult * 100f * hullSizeMod) + "%",
-                        "" + Math.round(ship.getMutableStats().getSuppliesToRecover().base * (1 - apReduction / hullSizeMod)),
-                        "" + Math.round(ship.getMutableStats().getSuppliesPerMonth().base * (1 + maintenanceMult * hullSizeMod)));
+                        "" + Math.round(MAX_CR_PENALTY * 100f) + "%",
+                        ship.getCaptain().getName().getFullName(),
+                        "" + Math.round(apReduction * 100f) + "%", "" + hullSizeMod, hullSizeString, "" + Math.round(apReduction * 100f / hullSizeMod) + "%",
+                        "" + Math.round(maintenanceMult * 10f) + "%", "" + hullSizeMod, hullSizeString,
+                        "" + Math.round(maintenanceMult * 15f) + "%",
+                        "" + Math.round(maintenanceMult * 20f) + "%",
+                        "" + Math.round(ship.getMutableStats().getSuppliesToRecover().base * (1 - apReduction / hullSizeMod)));
             } else {
-                tooltip.addPara("Automated ships " + usually + "require specialized equipment and expertise to maintain. In a "
-                                + "fleet lacking these, they're virtually useless, with their maximum combat "
-                                + "readiness being reduced by %s.",
-                        opad, Misc.getHighlightColor(), "" + Math.round(MAX_CR_PENALTY * 100f) + "%");
+                tooltip.addPara("Automated ships usually require specialized equipment and expertise to maintain, "
+                                + "resulting in a maximum combat readiness penalty of %s. "
+                                + "This penalty can be offset by a fleet commander skilled in the use of "
+                                + "automated ships.", opad, Misc.getHighlightColor(),
+                        "" + (int)Math.round(MAX_CR_PENALTY * 100f) + "%");
             }
             if (noPenalty) {
                 tooltip.addPara("However, this ship was automated in a fashion that does not require special expertise "
-                        + "to maintain. Some of the techniques used are poorly understood, likely dating to "
-                        + "an earlier period.", opad);
+                                + "to maintain. Some of the techniques used are poorly understood, likely dating to "
+                                + "an earlier period.", opad, Misc.getHighlightColor(),
+                        "does not require special expertise");
             }
         }
     }
 
+    //Unchanged
     public static boolean isAutomatedNoPenalty(MutableShipStatsAPI stats) {
         if (stats == null) return false;
         FleetMemberAPI member = stats.getFleetMember();
@@ -161,6 +173,7 @@ public class TAS_Automated extends BaseHullMod {
                 member.getVariant().hasTag(Tags.TAG_AUTOMATED_NO_PENALTY);
     }
 
+    //Unchanged
     public static boolean isAutomatedNoPenalty(ShipAPI ship) {
         if (ship == null) return false;
         FleetMemberAPI member = ship.getFleetMember();
@@ -169,6 +182,7 @@ public class TAS_Automated extends BaseHullMod {
                 member.getVariant().hasTag(Tags.TAG_AUTOMATED_NO_PENALTY);
     }
 
+    //Unchanged
     public static boolean isAutomatedNoPenalty(FleetMemberAPI member) {
         if (member == null) return false;
         return member.getHullSpec().hasTag(Tags.TAG_AUTOMATED_NO_PENALTY) ||

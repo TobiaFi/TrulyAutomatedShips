@@ -3,7 +3,9 @@
     <CLASSES>
       <root url="jar://C:/Program Files (x86)/Fractal Softworks/Starsector/starsector-core/starfarer.api.jar!/" />
     </CLASSES>
-    <JAVADOC />
+    <JAVADOC>
+      <root url="https://starsectorcommunityapidocs.github.io/CommunityApiDocs" />
+    </JAVADOC>
     <SOURCES />
   </library>
 </component>
