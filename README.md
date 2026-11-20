@@ -47,6 +47,9 @@ To do so, just follow the instructions in README.txt and you'll be able to set u
 When using this mod on a preexisting savefile, you'll need to remove all cores that you already have on your ships and then put them back in. Otherwise, the game won't update their CR according to the mod.
 If you already have some cores integrated into ships by the time you install this mod, that ship's CR calculation will stay bugged. There's nothing I can do at the moment.
 
+## v2.0.1 changelog
+- Ensured the mod works with the new game version 0.98.5a-RC8
+
 ## v2.0 changelog
 - Removed the previous downside for AI cores on automated ships (increased supply maintenance costs). It wasn't fun, just boring
 - Added downside of increased CR cost for deployment
